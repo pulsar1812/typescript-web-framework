@@ -167,20 +167,20 @@ function () {
     this.bindModel();
   }
 
-  View.prototype.bindModel = function () {
-    var _this = this;
-
-    this.model.on('change', function () {
-      _this.render();
-    });
-  };
-
   View.prototype.regionsMap = function () {
     return {};
   };
 
   View.prototype.eventsMap = function () {
     return {};
+  };
+
+  View.prototype.bindModel = function () {
+    var _this = this;
+
+    this.model.on('change', function () {
+      _this.render();
+    });
   };
 
   View.prototype.bindEvents = function (fragment) {
@@ -2186,8 +2186,9 @@ function () {
       res.data.forEach(function (value) {
         _this.models.push(_this.deserialize(value));
       });
+
+      _this.trigger('change');
     });
-    this.trigger('change');
   };
 
   return Collection;
@@ -2445,7 +2446,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58620" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57147" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

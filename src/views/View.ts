@@ -7,12 +7,6 @@ export abstract class View<T extends Model<K>, K> {
     this.bindModel();
   }
 
-  bindModel(): void {
-    this.model.on('change', () => {
-      this.render();
-    });
-  }
-
   abstract template(): string;
 
   regionsMap(): { [key: string]: string } {
@@ -21,6 +15,12 @@ export abstract class View<T extends Model<K>, K> {
 
   eventsMap(): { [key: string]: () => void } {
     return {};
+  }
+
+  bindModel(): void {
+    this.model.on('change', () => {
+      this.render();
+    });
   }
 
   bindEvents(fragment: DocumentFragment): void {
